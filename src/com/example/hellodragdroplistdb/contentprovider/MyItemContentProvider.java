@@ -16,7 +16,6 @@ import android.text.TextUtils;
 import com.example.hellodragdroplistdb.database.ItemSQLiteOpenHelper;
 import com.example.hellodragdroplistdb.database.Items;
 
-
 public class MyItemContentProvider extends ContentProvider {
 
 	// database
@@ -29,7 +28,7 @@ public class MyItemContentProvider extends ContentProvider {
 	private static final String AUTHORITY = "com.example.hellodragdroplistdb.contentprovider";
 
 	private static final String BASE_PATH = "items";
-	
+
 	public static final Uri CONTENT_URI = Uri.parse("content://" + AUTHORITY
 			+ "/" + BASE_PATH);
 
@@ -120,12 +119,11 @@ public class MyItemContentProvider extends ContentProvider {
 		case URI_ITEMS_ID:
 			String id = uri.getLastPathSegment();
 			if (TextUtils.isEmpty(selection)) {
-				rowsDeleted = sqlDB.delete(Items.TABLE_ITEM,
-						Items.COLUMN_ID + "=" + id, null);
+				rowsDeleted = sqlDB.delete(Items.TABLE_ITEM, Items.COLUMN_ID
+						+ "=" + id, null);
 			} else {
-				rowsDeleted = sqlDB.delete(Items.TABLE_ITEM,
-						Items.COLUMN_ID + "=" + id + " and " + selection,
-						selectionArgs);
+				rowsDeleted = sqlDB.delete(Items.TABLE_ITEM, Items.COLUMN_ID
+						+ "=" + id + " and " + selection, selectionArgs);
 			}
 			break;
 		default:
@@ -166,7 +164,8 @@ public class MyItemContentProvider extends ContentProvider {
 	}
 
 	private void checkColumns(String[] projection) {
-		String[] available = { Items.COLUMN_NAME, Items.COLUMN_ITEM_DETAIL, Items.COLUMN_ID };
+		String[] available = { Items.COLUMN_NAME, Items.COLUMN_ITEM_DETAIL,
+				Items.COLUMN_ID };
 		if (projection != null) {
 			HashSet<String> requestedColumns = new HashSet<String>(
 					Arrays.asList(projection));
